@@ -3,7 +3,7 @@ const port = 9999;
 
 // 建立http server
 var server = require('http').createServer(function (req, res) {
-    require('fs').createReadStream('index.html').pipe(res);
+    require('fs').createReadStream(req.url == '/favicon.ico' ? 'favicon.ico' : 'index.html').pipe(res);
 }).listen(port);
 
 // 建立webSocket
