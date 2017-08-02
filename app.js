@@ -34,13 +34,17 @@ var big2Receive = /^S → C:(\S*)\s?(.*)/;    // S → C:play 0 1 0!1!2!3!4!5!6!
 var texasSend = /^CLIENT:\s{2}(\S*)\s?(.*)/;        // CLIENT:  sit 7 3029080
 var texasReceive = /^SERVER : (\S*) DATA :\s?(.*)/; // SERVER : last_cmd DATA : ["[\"\",\"\",\"\",\"\",\"\",\"\",[\"plnext\"],\"\",\"\"]"]
 
-var send = [big2Send, texasSend];
-var receive = [big2Receive, texasReceive];
+var landLordSend = /^send_command:    (\S*)\s?(.*)/;    // send_command:    call 3
+var lansLordReceive = /^seq:\d+ (\S*)\s?(.*)/;          // seq:20 tablemode auto
+
+var send = [big2Send, texasSend, landLordSend];
+var receive = [big2Receive, texasReceive, lansLordReceive];
 
 var includes = [...send, ...receive];
 var excludes = [
-    /C → S:\d(_ping|_PONG|LOG)/,
-    /S → C:_pong/,
+    /C → S:\d(_ping|_PONG|LOG)/,    // 大老二 client ping/pong
+    /S → C:_pong/,                  // 大老二 server ping/pong
+    /send_command:    LOG/,         // 鬥地主 LOG
 ];
 
 // 開始tail
