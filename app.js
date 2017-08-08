@@ -45,6 +45,13 @@ var excludes = [
     /C → S:\d(_ping|_PONG|LOG)/,    // 大老二 client ping/pong
     /S → C:_pong/,                  // 大老二 server ping/pong
     /send_command:    LOG/,         // 鬥地主 LOG
+
+    /*
+    鋤大D會把收到的cmd 重複噴一次 
+    S → C:newRoom 1
+    seq:12 newRoom 1
+    */
+    /^seq:\d+ /,
 ];
 
 // 開始tail
