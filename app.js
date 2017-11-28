@@ -51,7 +51,7 @@ var excludes = [
     S → C:newRoom 1
     seq:12 newRoom 1
     */
-    /^seq:\d+ /,
+    // /^seq:\d+ /,
 ];
 
 // 開始tail
